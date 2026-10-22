@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>شمارش معکوس GTA 6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;900&family=Bungee&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#12041f;--pink:#ff2e93;--orange:#ff8a3d;--cyan:#27e6ff;--sun:#ffd35a;--text:#fff4ee;--muted:#d8c0e4;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Vazirmatn,Tahoma,sans-serif;line-height:1.9;overflow-x:hidden}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+.app{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:62px 14px calc(130px + env(safe-area-inset-bottom,0px))}
+.page{display:none;animation:in .45s ease both}
+.page.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+
+/* Liquid glass */
+.glass{position:relative;border-radius:26px;background:linear-gradient(135deg,rgba(255,255,255,.17),rgba(255,255,255,.04) 55%,rgba(255,255,255,.1));
+-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);
+border:1px solid rgba(255,255,255,.26);
+box-shadow:inset 0 1.5px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(255,255,255,.1),inset 0 0 30px rgba(255,255,255,.04),0 18px 50px rgba(0,0,0,.45)}
+.glass::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+background:radial-gradient(120% 70% at 0% 0%,rgba(255,255,255,.3),transparent 42%),radial-gradient(90% 60% at 100% 100%,rgba(255,46,147,.18),transparent 55%)}
+.glass>*{position:relative}
+.sec{padding:26px;margin-bottom:22px}
+.lift{transition:transform .3s,box-shadow .3s}
+.lift:hover{transform:perspective(900px) rotateX(3deg) translateY(-5px);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.6),0 26px 60px rgba(0,0,0,.55),0 0 30px rgba(255,46,147,.25)}
+
+h2{font-size:clamp(24px,4.5vw,36px);font-weight:900;margin:0 0 4px;color:#fff;text-shadow:0 0 22px rgba(255,46,147,.8)}
+h2 small{font-size:.5em;font-weight:600;color:var(--cyan);margin-inline-start:8px}
+h3{margin:0}
+.sub{margin:0 0 20px;color:var(--muted)}
+p{margin:0 0 12px}
+.note{font-size:13px;color:var(--muted)}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+.btn{font:inherit;font-weight:600;color:#12041f;background:linear-gradient(90deg,var(--sun),var(--orange));border:0;border-radius:999px;padding:7px 22px;cursor:pointer;text-decoration:none;display:inline-block;box-shadow:0 6px 24px rgba(255,138,61,.5)}
+.btn.g{color:var(--text);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.35);box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
+.btn:hover{transform:translateY(-2px)}
+
+/* top controls */
+.top{position:fixed;z-index:11;top:calc(10px + env(safe-area-inset-top,0px));inset-inline-end:12px;display:flex;gap:8px}
+.top button{font:inherit;font-weight:600;font-size:14px;color:var(--text);cursor:pointer;border-radius:999px;padding:4px 16px;min-width:48px;
+background:linear-gradient(135deg,rgba(255,255,255,.22),rgba(255,255,255,.06));-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,.35);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 8px 24px rgba(0,0,0,.4)}
+.top button[aria-pressed=true]{background:linear-gradient(135deg,var(--pink),#c2287a);box-shadow:0 0 18px var(--pink),inset 0 1px 0 rgba(255,255,255,.5)}
+
+/* Hero */
+.hero{min-height:calc(100vh - 190px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10px 0 30px}
+.logo{font-family:Bungee,Impact,sans-serif;font-size:clamp(70px,18vw,190px);line-height:1;margin:0;direction:ltr;
+background:linear-gradient(180deg,#fff 10%,#ffb3d9 45%,var(--pink) 90%);-webkit-background-clip:text;background-clip:text;color:transparent;
+filter:drop-shadow(0 0 24px rgba(255,46,147,.8)) drop-shadow(0 10px 0 rgba(120,10,70,.55));animation:flick 6s infinite}
+.logo small{display:block;font-size:.24em;letter-spacing:.35em;color:var(--cyan);-webkit-text-fill-color:var(--cyan);filter:drop-shadow(0 0 12px var(--cyan))}
+@keyframes flick{0%,92%,100%{opacity:1}93%{opacity:.55}94%{opacity:1}96%{opacity:.7}97%{opacity:1}}
+.tag{margin:6px 0 24px;font-size:clamp(15px,2.6vw,21px);text-shadow:0 2px 14px #000}
+.clock{display:flex;gap:clamp(8px,2vw,20px);direction:ltr;justify-content:center;perspective:900px}
+.cell{min-width:clamp(68px,19vw,140px);padding:14px 6px 10px;border-radius:20px;transform:rotateX(8deg);transform-style:preserve-3d}
+.num{font-family:Bungee,Impact,sans-serif;font-size:clamp(30px,9vw,84px);line-height:1.1;text-shadow:0 0 14px var(--pink),0 0 34px var(--pink);font-variant-numeric:tabular-nums}
+.lbl{font-size:clamp(11px,2.4vw,15px);color:var(--cyan)}
+.date{display:inline-block;margin:22px 0 14px;font-weight:600;font-size:clamp(14px,2.8vw,19px);padding:6px 22px;border-radius:999px}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.done .num{color:var(--sun)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
+.st{padding:14px 10px;border-radius:18px;text-align:center}
+.st b{display:block;font-family:Bungee,Impact,sans-serif;font-size:24px;color:var(--sun);direction:ltr;text-shadow:0 0 14px rgba(255,211,90,.5)}
+.st span{font-size:13px;color:var(--muted)}
+
+/* progress + timeline */
+.pct{font-family:Bungee,Impact,sans-serif;font-size:clamp(32px,7vw,54px);color:var(--sun);direction:ltr;text-align:right}
+.bar{height:16px;border-radius:99px;background:rgba(0,0,0,.4);overflow:hidden;direction:ltr;margin:10px 0 8px;box-shadow:inset 0 2px 6px #000a}
+.fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--cyan),var(--pink),var(--orange));box-shadow:0 0 16px var(--pink);transition:width 1.8s ease}
+.ends{display:flex;justify-content:space-between;color:var(--muted);font-size:14px}
+.tl{list-style:none;margin:0;padding:0;border-inline-start:3px solid var(--pink)}
+.tl li{position:relative;padding:0 0 22px;padding-inline-start:26px}
+.tl li::before{content:"";position:absolute;inset-inline-start:-11px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--cyan);box-shadow:0 0 12px var(--cyan)}
+.tl time{display:block;color:var(--cyan);font-weight:900}
+.tl li.now::before{background:var(--pink);border-color:var(--pink);box-shadow:0 0 16px var(--pink)}
+
+/* content bits */
+.story p{font-size:17px}
+.quote{border-inline-start:4px solid var(--cyan);padding:6px 16px;margin:16px 0;color:var(--cyan);font-weight:600}
+.duo,.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-bottom:20px}
+.card{border-radius:22px;padding:22px;--c:var(--cyan)}
+.card h3{font-family:Bungee,Impact,sans-serif;font-size:24px;direction:ltr;text-align:right;color:var(--c);text-shadow:0 0 16px var(--c)}
+.card .role{color:var(--sun);font-weight:600;margin-bottom:6px}
+.crew,.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.m,.f{padding:14px 16px;border-radius:16px;border-inline-start:4px solid var(--orange)}
+.m b{display:block;direction:ltr;text-align:right;color:var(--sun)}
+.m span{font-size:14px;color:#ecd9f2}
+.f b{display:block;color:var(--sun);font-size:14px}
+.f span{font-weight:600}
+.tabs,.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.chips{justify-content:center}
+.tab,.chip{font:inherit;font-weight:600;color:var(--text);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:5px 18px;cursor:pointer;
+box-shadow:inset 0 1px 0 rgba(255,255,255,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.chip{font-size:13px;padding:3px 14px}
+.tab[aria-selected=true],.chip[aria-pressed=true]{background:linear-gradient(135deg,var(--pink),#c2287a);border-color:#fff6;box-shadow:0 0 18px var(--pink),inset 0 1px 0 rgba(255,255,255,.5)}
+.panel{min-height:110px;padding:18px;border-radius:18px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.16)}
+.panel h3{direction:ltr;text-align:right;font-family:Bungee,Impact,sans-serif;color:var(--cyan);font-size:22px;margin-bottom:6px}
+
+/* maps */
+.mapbox{position:relative;max-width:520px;margin:0 auto 14px}
+.mapbox svg{width:100%;height:auto;display:block;border-radius:18px;background:radial-gradient(circle at 50% 40%,#1b0833,#0a0212);border:1px solid rgba(39,230,255,.4)}
+.soon{position:absolute;top:12px;inset-inline-start:12px;transform:rotate(-6deg);background:var(--sun);color:#12041f;font-weight:900;padding:3px 14px;border-radius:8px;box-shadow:0 0 22px var(--orange);font-size:14px;z-index:2}
+.land{fill:#25103a;stroke:var(--cyan);stroke-width:2}
+.water{fill:rgba(39,230,255,.18);stroke:var(--cyan);stroke-width:1}
+.rg{fill:rgba(255,46,147,.25);stroke:var(--cyan);stroke-width:1.5;cursor:pointer;transition:fill .2s}
+.rg:hover,.rg.on{fill:rgba(255,211,90,.5)}
+.rt{fill:#fff;font:600 11px Vazirmatn,sans-serif;pointer-events:none;text-anchor:middle;paint-order:stroke;stroke:#0a0212;stroke-width:3px}
+.dot{cursor:pointer}
+.dot circle{stroke:#fff;stroke-width:1.5}
+.dot.on circle{r:9;filter:drop-shadow(0 0 6px #fff)}
+.dot text{fill:#fff;font:600 9px Vazirmatn,sans-serif;paint-order:stroke;stroke:#0a0212;stroke-width:3px;text-anchor:middle}
+.stage{perspective:1200px;padding:30px 0 40px;touch-action:pan-y}
+.map3d{position:relative;transform:rotateX(var(--rx,30deg)) rotateY(var(--ry,0deg));transform-style:preserve-3d;transition:transform .18s ease-out;border-radius:18px}
+.map3d::after{content:"";position:absolute;inset:0;border-radius:inherit;background:#05080b;transform:translateZ(-22px);box-shadow:0 50px 60px -10px rgba(0,0,0,.75),0 0 40px rgba(39,230,255,.18);z-index:-1}
+.map3d img{display:block;width:100%;height:auto;border-radius:18px;border:1px solid rgba(255,255,255,.3);cursor:crosshair}
+.pin{position:absolute;transform:translate(-50%,-50%) translateZ(34px);font:inherit;color:#fff;background:none;border:0;cursor:pointer;padding:0}
+.pin i{display:block;width:16px;height:16px;border-radius:50%;background:var(--pink);border:2px solid #fff;margin:0 auto;animation:pulse 2s infinite}
+.pin span{display:block;margin-top:4px;font-size:11px;font-weight:600;white-space:nowrap;padding:1px 9px;border-radius:99px;background:rgba(10,2,18,.8);border:1px solid rgba(255,255,255,.3)}
+.pin.on i{background:var(--sun)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,46,147,.7)}70%{box-shadow:0 0 0 14px rgba(255,46,147,0)}100%{box-shadow:0 0 0 0 rgba(255,46,147,0)}}
+.ms{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;max-height:460px;overflow:auto;padding:4px;margin-top:10px}
+.ms button{font:inherit;text-align:start;color:var(--text);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:8px 12px;cursor:pointer;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.ms button:hover{border-color:var(--cyan)}
+.ms b{direction:ltr;font-size:13px}
+.ms i{font-style:normal;font-size:11px;padding:1px 9px;border-radius:99px;color:#12041f;font-weight:900;white-space:nowrap}
+
+/* cars */
+.cars{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.car{padding:18px;border-radius:22px;--c:var(--cyan)}
+.car h3{font-family:Bungee,Impact,sans-serif;font-size:22px;direction:ltr;text-align:start;color:var(--c);text-shadow:0 0 14px var(--c)}
+.car .ico{font-size:34px;line-height:1.2}
+.car .tagc{display:inline-block;font-size:11px;font-weight:900;padding:0 10px;border-radius:99px;color:#12041f;background:var(--c);margin:4px 0 8px}
+.car p{font-size:14px;margin:0}
+.car .ins{color:var(--muted);font-size:12.5px;margin-top:6px}
+
+/* trailers + radio */
+.trs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.tr{padding:16px;border-radius:24px}
+.vid{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:linear-gradient(160deg,#3b0d57,#c2287a 60%,#ff8a3d);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.3)}
+.vid button{font:inherit;width:78px;height:78px;border-radius:50%;border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.22);backdrop-filter:blur(10px);color:#fff;font-size:30px;cursor:pointer;box-shadow:0 0 34px rgba(255,255,255,.4)}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid em{position:absolute;bottom:10px;inset-inline-start:14px;font-style:normal;font-family:Bungee,Impact,sans-serif;font-size:20px;direction:ltr;text-shadow:0 2px 10px #000}
+.tr h3{margin:12px 0 2px}
+.eq{display:flex;gap:4px;align-items:flex-end;height:40px;direction:ltr;margin:6px 0 12px}
+.eq i{flex:1;max-width:12px;background:linear-gradient(var(--cyan),var(--pink));border-radius:3px;height:20%;transition:height .2s}
+.eq.on i{animation:bounce .8s ease-in-out infinite alternate}
+.eq i:nth-child(2n){animation-delay:.15s}.eq i:nth-child(3n){animation-delay:.3s}.eq i:nth-child(5n){animation-delay:.45s}
+@keyframes bounce{to{height:100%}}
+
+.soonrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.sc{padding:24px;border-radius:22px;text-align:center;border:1px dashed rgba(255,211,90,.7)}
+.sc big{display:block;font-size:38px}
+.sc em{display:inline-block;margin-top:8px;font-style:normal;font-weight:900;color:#12041f;background:var(--sun);padding:2px 14px;border-radius:99px}
+footer{text-align:center;padding:10px 16px;color:var(--muted);font-size:13px}
+
+/* Dock */
+.dock{position:fixed;z-index:10;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;gap:2px;padding:8px;border-radius:30px;
+background:linear-gradient(135deg,rgba(255,255,255,.22),rgba(255,255,255,.06));-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);
+border:1px solid rgba(255,255,255,.35);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.6),0 20px 50px rgba(0,0,0,.6),0 0 40px rgba(255,46,147,.2);max-width:calc(100vw - 12px)}
+.dock button{font:inherit;color:var(--text);background:none;border:0;border-radius:22px;padding:6px 8px;cursor:pointer;display:flex;flex-direction:column;align-items:center;min-width:54px;transition:transform .2s,background .2s}
+.dock button span{font-size:21px;line-height:1.3;transition:transform .2s}
+.dock button small{font-size:10.5px;font-weight:600;white-space:nowrap}
+.dock button:hover span{transform:translateY(-4px) scale(1.2)}
+.dock button[aria-current=page]{background:linear-gradient(135deg,rgba(255,46,147,.75),rgba(194,40,122,.55));box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 0 22px rgba(255,46,147,.65)}
+@media (max-width:420px){.dock button{min-width:46px;padding:6px 5px}.dock button small{font-size:9.5px}}
+
+/* English / LTR */
+[dir=ltr] .card h3,[dir=ltr] .m b,[dir=ltr] .panel h3,[dir=ltr] .pct{text-align:left}
+[dir=ltr] body{font-family:Vazirmatn,system-ui,sans-serif}
+@media (prefers-reduced-motion:reduce){.logo,.pin i,.eq.on i{animation:none}.fill{transition:none}html{scroll-behavior:auto}.page{animation:none}.map3d{transition:none}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+
+<div class="top">
+  <button id="radioBtn" aria-pressed="false" aria-label="Radio">🎵</button>
+  <button id="langBtn" aria-label="Language">EN</button>
+</div>
+
+<div class="app">
+
+<!-- HOME -->
+<div class="page on" id="p-home">
+  <header class="hero">
+    <h1 class="logo" aria-label="Grand Theft Auto VI"><small>GRAND THEFT AUTO</small>VI</h1>
+    <p class="tag" id="tag" data-en="Back to Vice City — the countdown is on">بازگشت به ونیس‌سیتی؛ شمارش معکوس شروع شد</p>
+    <div class="clock" id="clock" role="timer">
+      <div class="cell glass"><div class="num" id="d">--</div><div class="lbl" data-en="Days">روز</div></div>
+      <div class="cell glass"><div class="num" id="h">--</div><div class="lbl" data-en="Hours">ساعت</div></div>
+      <div class="cell glass"><div class="num" id="m">--</div><div class="lbl" data-en="Minutes">دقیقه</div></div>
+      <div class="cell glass"><div class="num" id="s">--</div><div class="lbl" data-en="Seconds">ثانیه</div></div>
+    </div>
+    <div class="date glass" data-en="November 19, 2026">۲۸ آبان ۱۴۰۵ &nbsp;|&nbsp; ۱۹ نوامبر ۲۰۲۶</div>
+    <div class="row">
+      <button class="btn" id="calBtn" data-en="📅 Add to calendar">📅 افزودن به تقویم</button>
+      <a class="btn g" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=GTA+6+Release+Day&dates=20261119/20261120&details=Grand+Theft+Auto+VI+release+date" target="_blank" rel="noopener" data-en="Google Calendar">Google Calendar</a>
+      <button class="btn g" data-go="trailer" data-en="🎬 Watch trailers">🎬 دیدن تریلرها</button>
+    </div>
+    <p class="note" id="calNote" style="margin-top:10px"></p>
+  </header>
+
+  <section class="glass sec lift">
+    <h2 data-en="Wait calculator">ماشین‌حساب انتظار</h2>
+    <p class="sub" data-en="How much time is left until release, in different units">تا روز عرضه چقدر مانده، با واحدهای مختلف</p>
+    <div class="stats">
+      <div class="st glass"><b id="st-days">0</b><span data-en="days">روز</span></div>
+      <div class="st glass"><b id="st-weeks">0</b><span data-en="full weeks">هفته‌ی کامل</span></div>
+      <div class="st glass"><b id="st-nights">0</b><span data-en="nights of sleep">شب خواب</span></div>
+      <div class="st glass"><b id="st-hours">0</b><span data-en="hours">ساعت</span></div>
+      <div class="st glass"><b id="st-min">0</b><span data-en="minutes">دقیقه</span></div>
+    </div>
+  </section>
+  <section class="glass sec lift">
+    <h2 data-en="Waiting bar">نوار انتظار</h2>
+    <p class="sub" data-en="From the first trailer to release day">از اولین تریلر تا روز عرضه</p>
+    <div class="pct" id="pct">0%</div>
+    <div class="bar"><div class="fill" id="fill"></div></div>
+    <div class="ends"><span data-en="Trailer 1 · Dec 2023">تریلر ۱ · دسامبر ۲۰۲۳</span><span data-en="Release · Nov 19, 2026">عرضه · ۱۹ نوامبر ۲۰۲۶</span></div>
+    <p class="note" id="wnote" style="margin-top:10px"></p>
+  </section>
+  <section class="glass sec lift">
+    <h2 data-en="Road to release">مسیر انتظار</h2>
+    <ul class="tl">
+      <li><time data-en="December 2023">دسامبر ۲۰۲۳</time><span data-en="Trailer 1 was released.">تریلر اول منتشر شد.</span></li>
+      <li><time data-en="May 2025">مه ۲۰۲۵</time><span data-en="Trailer 2 was released, introducing the characters and regions.">تریلر دوم منتشر شد و شخصیت‌ها و مناطق معرفی شدند.</span></li>
+      <li><time data-en="Delays">تأخیرها</time><span data-en="Release moved from fall 2025 to May 2026, then to November 2026.">عرضه از پاییز ۲۰۲۵ به مه ۲۰۲۶ و بعد به نوامبر ۲۰۲۶ رفت.</span></li>
+      <li class="now"><time data-en="November 19, 2026">۱۹ نوامبر ۲۰۲۶</time><span data-en="Release day.">روز عرضه.</span></li>
+    </ul>
+    <p class="note" data-en="If Rockstar changes the date again, the number on this page needs updating.">اگر راکستار دوباره تاریخ را عوض کند، باید عدد این صفحه به‌روز شود.</p>
+  </section>
+  <section class="glass sec">
+    <h2 data-en="Coming soon">به‌زودی</h2>
+    <p class="sub" data-en="Sections that will be added once official info is out.">بخش‌هایی که بعد از انتشار اطلاعات رسمی اضافه می‌شوند.</p>
+    <div class="soonrow">
+      <div class="sc glass lift"><big>🗺️</big><span data-en="Official GTA 6 map">نقشه‌ی رسمی GTA 6</span><br><em>COMING SOON</em></div>
+      <div class="sc glass lift"><big>🎞️</big><span data-en="Trailer 3">تریلر ۳</span><br><em>COMING SOON</em></div>
+      <div class="sc glass lift"><big>🎮</big><span data-en="GTA 6 gameplay and vehicles">گیم‌پلی و ماشین‌های GTA 6</span><br><em>COMING SOON</em></div>
+      <div class="sc glass lift"><big>📻</big><span data-en="GTA 6 radio stations">ایستگاه‌های رادیوی GTA 6</span><br><em>COMING SOON</em></div>
+    </div>
+  </section>
+</div>
+
+<!-- GTA 6 -->
+<div class="page" id="p-gta6">
+  <section class="glass sec story">
+    <h2 data-en="The story <small>GTA 6</small>">داستان بازی <small>GTA 6</small></h2>
+    <p class="sub" data-en="Two people, one city, and a world stacked against them from the start.">دو نفر، یک شهر، و دنیایی که از اول علیه‌شان چیده شده.</p>
+    <p data-en="GTA 6 takes place in the fictional state of <b>Leonida</b>, Rockstar's take on Florida. The heart of the map is <b>Vice City</b>, a city of beaches, clubs and neon that longtime fans know from older GTA games, now in the modern world.">GTA 6 در ایالت خیالی <b>لئونیدا</b> اتفاق می‌افتد؛ نسخه‌ی راکستار از فلوریدا. قلب نقشه <b>ونیس‌سیتی</b> است، شهری پر از ساحل، کلوپ و نئون که طرفدارها از GTA قدیمی می‌شناسند، این بار در دنیای مدرن.</p>
+    <p data-en="The protagonists are <b>Jason Duval</b> and <b>Lucia Caminos</b>. In Trailer 2 we see Jason going about his ordinary days, then picking Lucia up from Leonida prison. From there begins a romantic, criminal bond that feels like Bonnie and Clyde.">قهرمان‌های بازی <b>جیسون دووال</b> و <b>لوسیا کامینوس</b> هستند. در تریلر دوم می‌بینیم جیسون روزهای عادی‌اش را می‌گذراند و بعد لوسیا را از زندان لئونیدا بیرون می‌آورد. از اینجا شروع می‌شود یک رابطه‌ی عاشقانه و جنایی، شبیه بانی و کلاید.</p>
+    <div class="quote" data-en="From the official trailer description: Jason and Lucia knew from the start that the odds were stacked against them.">توضیح رسمی تریلر: جیسون و لوسیا از قبل می‌دانستند همه‌چیز علیه‌شان است.</div>
+    <p data-en="Rockstar hasn't revealed much about the story before release; how the gameplay and missions will actually look is still mostly speculation.">راکستار قبل از عرضه جزئیات داستان را زیاد باز نکرده؛ اینکه گیم‌پلی دقیقاً چطور باشد و ماموریت‌ها چه شکلی باشند، هنوز بیشتر حدس و گمان است.</p>
+  </section>
+  <section class="glass sec">
+    <h2 data-en="Characters">شخصیت‌ها</h2>
+    <p class="sub" data-en="Two leads and the people around them.">دو قهرمان اصلی و آدم‌هایی که دور آن‌ها می‌چرخند.</p>
+    <div class="duo">
+      <div class="card glass lift" style="--c:#ff2e93"><h3>LUCIA CAMINOS</h3><div class="role" data-en="Female lead">قهرمان زن</div><p data-en="Lucia is freed from Leonida prison in Trailer 2. Per the official description, she went in for something she did to protect her family. She is the first main female lead of GTA in years.">لوسیا در تریلر دوم از زندان لئونیدا آزاد می‌شود. طبق توضیح رسمی، به‌خاطر کاری که برای محافظت از خانواده‌اش کرده زندان رفته. اولین قهرمان زن اصلی GTA در سال‌های اخیر است.</p></div>
+      <div class="card glass lift"><h3>JASON DUVAL</h3><div class="role" data-en="Male lead">قهرمان مرد</div><p data-en="Jason wants a simple life, but trouble follows him. The trailer shows him working for Brian before he picks Lucia up from prison.">جیسون زندگی ساده می‌خواهد، ولی دردسر دنبالش است. تریلر او را در کار برای برایان نشان می‌دهد، قبل از اینکه لوسیا را از زندان بیاورد.</p></div>
+    </div>
+    <div class="crew">
+      <div class="m glass"><b>Cal Hampton</b><span data-en="Jason's friend, suspicious of everything and into tech">دوست جیسون، آدم شکاک به همه‌چیز و اهل تکنولوژی</span></div>
+      <div class="m glass"><b>Brian Heder</b><span data-en="First person we see in Trailer 2; Jason works for him">اولین کسی که در تریلر دوم می‌بینیم؛ جیسون برایش کار می‌کند</span></div>
+      <div class="m glass"><b>Raul Bautista</b><span data-en="Possibly the one who pulls them into a big job">احتمالاً کسی که آن‌ها را وارد یک کار بزرگ می‌کند</span></div>
+      <div class="m glass"><b>Boobie Ike</b><span data-en="One of the faces introduced in Trailer 2">از چهره‌های معرفی‌شده در تریلر دوم</span></div>
+      <div class="m glass"><b>Dre'Quan Priest</b><span data-en="One of the faces introduced in Trailer 2">از چهره‌های معرفی‌شده در تریلر دوم</span></div>
+      <div class="m glass"><b>Real Dimez</b><span data-en="One of the faces introduced in Trailer 2">از چهره‌های معرفی‌شده در تریلر دوم</span></div>
+    </div>
+  </section>
+  <section class="glass sec">
+    <h2 data-en="Quick facts">خلاصه‌ی اطلاعات</h2>
+    <p class="sub" data-en="What's officially confirmed.">چیزهایی که رسماً مشخص است.</p>
+    <div class="facts">
+      <div class="f glass"><b data-en="Developer">سازنده</b><span>Rockstar Games</span></div>
+      <div class="f glass"><b data-en="Release date">تاریخ عرضه</b><span data-en="November 19, 2026">۱۹ نوامبر ۲۰۲۶</span></div>
+      <div class="f glass"><b data-en="Platforms">پلتفرم‌ها</b><span>PS5 / Xbox Series X|S</span></div>
+      <div class="f glass"><b data-en="PC version">نسخه‌ی PC</b><span data-en="Not at launch">روز اول عرضه نمی‌شود</span></div>
+      <div class="f glass"><b data-en="Protagonists">قهرمان‌ها</b><span data-en="Two: Jason and Lucia">دو نفر: جیسون و لوسیا</span></div>
+      <div class="f glass"><b data-en="Setting">مکان</b><span data-en="Leonida, Vice City">لئونیدا، ونیس‌سیتی</span></div>
+    </div>
+  </section>
+</div>
+
+<!-- GTA 5 -->
+<div class="page" id="p-gta5">
+  <section class="glass sec">
+    <h2 data-en="GTA 5 <small>Los Santos</small>">GTA 5 <small>لس‌سانتوس</small></h2>
+    <p class="sub" data-en="The game that paved the way for GTA 6.">بازی‌ای که راه را برای GTA 6 باز کرد.</p>
+    <div class="facts">
+      <div class="f glass"><b data-en="Release">عرضه</b><span data-en="Sept 17, 2013 (PS3 / Xbox 360)">۱۷ سپتامبر ۲۰۱۳ (PS3 و Xbox 360)</span></div>
+      <div class="f glass"><b data-en="Later versions">نسخه‌های بعدی</b><span data-en="PS4/Xbox One 2014 · PC 2015 · PS5/Series 2022">PS4/Xbox One ۲۰۱۴ · PC ۲۰۱۵ · PS5/Series ۲۰۲۲</span></div>
+      <div class="f glass"><b data-en="Developer">سازنده</b><span>Rockstar North</span></div>
+      <div class="f glass"><b data-en="Setting">مکان</b><span data-en="Los Santos and the state of San Andreas">لس‌سانتوس و ایالت سن‌آندریاس</span></div>
+      <div class="f glass"><b data-en="Key feature">ویژگی اصلی</b><span data-en="Three playable leads you can switch between">سه قهرمان قابل‌بازی با امکان جابه‌جایی</span></div>
+      <div class="f glass"><b data-en="Online">آنلاین</b><span data-en="GTA Online since Oct 2013">GTA Online از اکتبر ۲۰۱۳</span></div>
+    </div>
+  </section>
+  <section class="glass sec">
+    <h2 data-en="The protagonists">قهرمان‌ها</h2>
+    <p class="sub" data-en="Three people, three lives, one city.">سه نفر، سه زندگی، یک شهر.</p>
+    <div class="trio">
+      <div class="card glass lift" style="--c:#27e6ff"><h3>MICHAEL DE SANTA</h3><div class="role" data-en="Retired robber">سارق بازنشسته</div><p data-en="Years ago Michael faked his death and entered witness protection. Now he lives in Rockford Hills with his wife and two kids, and the quiet life bores him.">مایکل سال‌ها پیش با پرونده‌ی ساختگی مرگش وارد برنامه‌ی حفاظت از شاهدان شد و حالا با همسر و دو فرزندش در راکفورد هیلز زندگی می‌کند. زندگی آرامش او را کسل کرده است.</p></div>
+      <div class="card glass lift" style="--c:#7dff6b"><h3>FRANKLIN CLINTON</h3><div class="role" data-en="Ambitious street kid">جوان جاه‌طلب خیابان</div><p data-en="Franklin repossesses cars for a dealership and is tired of his neighborhood. His friend Lamar Davis and his dog Chop are by his side.">فرانکلین برای یک نمایندگی ماشین «ریپو» می‌کند و از زندگی در محله‌اش خسته است. دوستش لامار دیویس و سگش چاپ همراهش هستند.</p></div>
+      <div class="card glass lift" style="--c:#ff8a3d"><h3>TREVOR PHILIPS</h3><div class="role" data-en="Michael's old partner">شریک قدیمی مایکل</div><p data-en="Trevor runs his own operation from Sandy Shores in Blaine County. He believes Michael died years ago, and things change when he learns the truth.">ترور از سندی‌شورز در بلین‌کانتی کار خودش را اداره می‌کند. او باور دارد مایکل سال‌ها پیش مرده و ماجرا از وقتی عوض می‌شود که حقیقت را می‌فهمد.</p></div>
+    </div>
+    <div class="crew">
+      <div class="m glass"><b>Lamar Davis</b><span data-en="Franklin's close friend">رفیق نزدیک فرانکلین</span></div>
+      <div class="m glass"><b>Lester Crest</b><span data-en="Mastermind behind the heist plans">مغز متفکر نقشه‌ی هایست‌ها</span></div>
+      <div class="m glass"><b>Amanda De Santa</b><span data-en="Michael's wife">همسر مایکل</span></div>
+      <div class="m glass"><b>Jimmy &amp; Tracey</b><span data-en="Michael's children">فرزندان مایکل</span></div>
+      <div class="m glass"><b>Devin Weston</b><span data-en="Tycoon and Michael's enemy">سرمایه‌دار و دشمن مایکل</span></div>
+      <div class="m glass"><b>Dave Norton</b><span data-en="FIB agent tied to Michael's past">مأمور FIB مرتبط با گذشته‌ی مایکل</span></div>
+      <div class="m glass"><b>Steve Haines</b><span data-en="FIB agent">مأمور FIB</span></div>
+      <div class="m glass"><b>Martin Madrazo</b><span data-en="Cartel boss">سردسته‌ی کارتل</span></div>
+    </div>
+  </section>
+  <section class="glass sec">
+    <h2 data-en="Places &amp; missions">نقاط و ماموریت‌ها</h2>
+    <p class="sub" data-en="Tap a point or a mission to find it on the map.">روی نقطه‌ها یا ماموریت‌ها بزن تا روی نقشه پیدا شوند.</p>
+    <div class="mapbox">
+      <svg viewBox="0 0 400 560" role="img" aria-label="Sketch map of San Andreas">
+        <path class="land" d="M40 40 L330 30 L370 120 L340 260 L300 340 L270 430 L200 520 L90 530 L60 470 L80 380 L30 300 L20 150 Z"/>
+        <ellipse class="water" cx="235" cy="170" rx="34" ry="22"/>
+        <text class="rt" x="235" y="173" style="font-size:9px;fill:#27e6ff">Alamo Sea</text>
+        <g id="pts5"></g>
+      </svg>
+    </div>
+    <p class="note" style="text-align:center" data-en="This is a simple approximate sketch, not an exact map. For the real map, go to the Map page.">این یک طرح ساده و تقریبی است، نه نقشه‌ی دقیق. برای نقشه‌ی واقعی به صفحه‌ی «نقشه» برو.</p>
+    <div class="panel" id="panel5" aria-live="polite"></div>
+    <h3 style="margin:26px 0 8px;color:var(--cyan)" data-en="Key missions &amp; heists">ماموریت‌های مهم و هایست‌ها</h3>
+    <div class="chips" id="chips5"></div>
+    <div class="ms" id="ms5"></div>
+    <p class="note" style="margin-top:10px" data-en="This list has only main missions and well-known heists, not all 69. Locations are approximate.">این لیست فقط ماموریت‌های اصلی و هایست‌های شناخته‌شده را دارد، نه کل ۶۹ ماموریت. مکان‌ها تقریبی‌اند.</p>
+  </section>
+</div>
+
+<!-- CARS -->
+<div class="page" id="p-cars">
+  <section class="glass sec">
+    <h2 data-en="GTA 5 vehicles <small>garage</small>">ماشین‌های GTA 5 <small>گاراژ</small></h2>
+    <p class="sub" data-en="A selection of well-known cars, bikes, aircraft and boats. Most are inspired by real vehicles.">گزیده‌ای از ماشین، موتور، هواپیما و قایق‌های معروف بازی. بیشتر آن‌ها از روی وسیله‌های واقعی الهام گرفته شده‌اند.</p>
+    <div class="chips" id="chipsC"></div>
+    <div class="cars" id="cars"></div>
+    <p class="note" style="margin-top:12px" data-en="Descriptions are short and general; I left out exact stats on purpose.">توضیحات کوتاه و کلی‌اند؛ آمار دقیق عملکرد را عمداً ننوشتم.</p>
+  </section>
+</div>
+
+<!-- MAPS -->
+<div class="page" id="p-maps">
+  <section class="glass sec">
+    <h2 data-en="GTA 5 map <small>3D</small>">نقشه‌ی GTA 5 <small>سه‌بعدی</small></h2>
+    <p class="sub" data-en="Move over the map with your mouse or finger to tilt it. Tap the pins.">با موس یا انگشت روی نقشه حرکت کن تا کج شود. روی نقطه‌ها بزن.</p>
+    <div class="stage" id="stage">
+      <div class="map3d" id="map3d">
+        <img id="mapImg" src="map5.webp" alt="GTA 5 map" width="1600" height="900" loading="lazy">
+      </div>
+    </div>
+    <div class="panel" id="panelR" aria-live="polite"></div>
+    <p class="note" style="margin-top:10px" data-en="Pin positions are approximate. Click anywhere on the map to see its coordinates; send me a place name with its coordinates and I can add a pin.">مکان نقطه‌ها تقریبی است. روی هر جای نقشه کلیک کنی مختصاتش نمایش داده می‌شود؛ اگر اسم مکان را با مختصاتش برایم بفرستی، نقطه‌اش را اضافه می‌کنم.</p>
+  </section>
+  <section class="glass sec" id="map6">
+    <h2 data-en="GTA 6 map <small>Leonida</small>">نقشه‌ی GTA 6 <small>لئونیدا</small></h2>
+    <p class="sub" data-en="Six main regions; tap the map or the buttons.">شش منطقه‌ی اصلی؛ روی نقشه یا دکمه‌ها بزن.</p>
+    <div class="mapbox">
+      <span class="soon" data-en="Official map · soon">نقشه‌ی رسمی · به‌زودی</span>
+      <svg viewBox="0 0 400 480" role="img" aria-label="Approximate map of Leonida">
+        <path class="land" d="M30 50 L170 45 L215 80 L260 120 L300 180 L330 260 L350 340 L320 410 L270 430 L230 390 L200 330 L170 280 L140 200 L90 120 Z"/>
+        <ellipse class="rg" data-i="3" cx="95" cy="95" rx="48" ry="28"/>
+        <ellipse class="rg" data-i="4" cx="190" cy="120" rx="50" ry="30"/>
+        <ellipse class="rg" data-i="5" cx="270" cy="170" rx="36" ry="36"/>
+        <ellipse class="rg" data-i="2" cx="205" cy="255" rx="46" ry="55"/>
+        <ellipse class="rg" data-i="0" cx="312" cy="305" rx="30" ry="55"/>
+        <ellipse class="rg" data-i="1" cx="235" cy="445" rx="42" ry="13"/>
+        <ellipse class="rg" data-i="1" cx="150" cy="462" rx="30" ry="10"/>
+        <text class="rt" x="95" y="98">Port Gellhorn</text><text class="rt" x="190" y="123">Ambrosia</text>
+        <text class="rt" x="270" y="173">Mt. Kalaga</text><text class="rt" x="205" y="258">Grassrivers</text>
+        <text class="rt" x="312" y="308">Vice City</text><text class="rt" x="235" y="448">Leonida Keys</text>
+      </svg>
+    </div>
+    <p class="note" style="text-align:center" data-en="Region layout is approximate and speculative; Rockstar hasn't released the official map yet.">چینش مناطق تقریبی و حدسی است؛ راکستار هنوز نقشه‌ی رسمی را منتشر نکرده.</p>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="panel" id="panel" role="tabpanel" aria-live="polite"></div>
+  </section>
+</div>
+
+<!-- TRAILERS + RADIO -->
+<div class="page" id="p-trailer">
+  <section class="glass sec">
+    <h2 data-en="Trailers">تریلرها</h2>
+    <p class="sub" data-en="Official GTA 6 trailers from the Rockstar Games YouTube channel. Tap play to load.">تریلرهای رسمی GTA 6 از کانال یوتیوب راکستار. برای پخش روی دکمه بزن.</p>
+    <div class="trs">
+      <div class="tr glass">
+        <div class="vid" data-v="QdBZY2fkU-0"><em>TRAILER 1</em><button aria-label="Play">▶</button></div>
+        <h3 data-en="Trailer 1 · December 2023">تریلر ۱ · دسامبر ۲۰۲۳</h3>
+        <a class="note" href="https://www.youtube.com/watch?v=QdBZY2fkU-0" target="_blank" rel="noopener" data-en="Open on YouTube">باز کردن در یوتیوب</a>
+      </div>
+      <div class="tr glass">
+        <div class="vid" data-v="VQRLujxTm3c"><em>TRAILER 2</em><button aria-label="Play">▶</button></div>
+        <h3 data-en="Trailer 2 · May 2025">تریلر ۲ · مه ۲۰۲۵</h3>
+        <a class="note" href="https://www.youtube.com/watch?v=VQRLujxTm3c" target="_blank" rel="noopener" data-en="Open on YouTube">باز کردن در یوتیوب</a>
+      </div>
+    </div>
+    <p class="note" style="margin-top:12px" data-en="If a video doesn't load here, use the YouTube link.">اگر ویدیویی اینجا بارگذاری نشد، از لینک یوتیوب استفاده کن.</p>
+  </section>
+  <section class="glass sec">
+    <h2 data-en="Vice Radio">رادیو ونیس</h2>
+    <p class="sub" data-en="A synthwave loop generated live in your browser, or play your own song.">یک لوپ سینت‌ویو که مستقیم داخل مرورگرت ساخته می‌شود، یا آهنگ خودت را پخش کن.</p>
+    <div class="eq" id="eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="row" style="justify-content:flex-start">
+      <button class="btn" id="radioBtn2" data-en="▶ Play radio">▶ پخش رادیو</button>
+      <label class="btn g" style="cursor:pointer"><span data-en="📁 Choose my own song">📁 آهنگ خودم</span><input id="file" type="file" accept="audio/*" hidden></label>
+    </div>
+    <p class="note" style="margin-top:10px" id="radioNote" data-en="The built-in tune is an original loop, not a song from the game. Your own file stays on your device.">این آهنگ یک لوپ اورجینال است، نه آهنگی از خود بازی. فایل خودت فقط روی دستگاه خودت می‌ماند.</p>
+  </section>
+</div>
+
+<footer data-en="Made by a fan; not an official site. GTA belongs to Rockstar Games and Take-Two.">ساخته‌شده توسط یک طرفدار؛ سایت رسمی نیست. GTA متعلق به Rockstar Games و Take-Two است.</footer>
+</div>
+
+<nav class="dock glass" aria-label="Sections" id="dock">
+  <button data-p="home" aria-current="page"><span>🏠</span><small data-en="Home">خانه</small></button>
+  <button data-p="gta6"><span>🌴</span><small>GTA 6</small></button>
+  <button data-p="gta5"><span>🚗</span><small>GTA 5</small></button>
+  <button data-p="cars"><span>🏎️</span><small data-en="Cars">ماشین‌ها</small></button>
+  <button data-p="maps"><span>🗺️</span><small data-en="Map">نقشه</small></button>
+  <button data-p="trailer"><span>🎬</span><small data-en="Trailer">تریلر</small></button>
+</nav>
+
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var each=function(l,f){Array.prototype.forEach.call(l,f)};
+  var L='fa',T=function(f,e){return L==='en'?e:f};
+  var NUM=function(n){return new Intl.NumberFormat(L==='en'?'en-US':'fa-IR',{useGrouping:L==='en'}).format(n)};
+
+  /* ---------- pages ---------- */
+  function show(p){
+    if(!$('p-'+p))p='home';
+    each(document.querySelectorAll('.page'),function(e){e.classList.toggle('on',e.id==='p-'+p)});
+    each(document.querySelectorAll('#dock button'),function(b){
+      if(b.getAttribute('data-p')===p)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+    window.scrollTo(0,0);
+    try{history.replaceState(null,'','#'+p)}catch(e){}
+  }
+  each(document.querySelectorAll('#dock button'),function(b){b.addEventListener('click',function(){show(b.getAttribute('data-p'))})});
+  each(document.querySelectorAll('[data-go]'),function(b){b.addEventListener('click',function(){show(b.getAttribute('data-go'))})});
+
+  /* ---------- countdown + stats ---------- */
+  var target=new Date(2026,10,19,0,0,0).getTime(), start=new Date(2023,11,5,0,0,0).getTime();
+  var shown=false,lastDiff=0;
+  function z(n){return n<10?'0'+n:''+n}
+  function setPct(p){
+    $('pct').textContent=p.toFixed(1)+'%';
+    if(!shown){shown=true;setTimeout(function(){$('fill').style.width=p+'%'},300)}else $('fill').style.width=p+'%';
+  }
+  function tick(){
+    var now=Date.now(),diff=target-now;lastDiff=diff;
+    if(diff<=0){['d','h','m','s'].forEach(function(i){$(i).textContent='00'});
+      $('tag').textContent=T('ونیس‌سیتی منتظر توست. بازی منتشر شد!','Vice City is waiting for you. The game is out!');$('clock').classList.add('done');setPct(100);return}
+    var t=Math.floor(diff/1000),days=Math.floor(t/86400);
+    $('d').textContent=z(days);$('h').textContent=z(Math.floor(t%86400/3600));
+    $('m').textContent=z(Math.floor(t%3600/60));$('s').textContent=z(t%60);
+    setPct(Math.min(100,(now-start)/(target-start)*100));
+    var dl=Math.ceil(diff/86400000);
+    $('wnote').textContent=L==='en'?(dl+' days left until release.'):(NUM(dl)+' روز دیگر تا عرضه مانده است.');
+    $('st-days').textContent=NUM(days);$('st-weeks').textContent=NUM(Math.floor(days/7));$('st-nights').textContent=NUM(dl);
+    $('st-hours').textContent=NUM(Math.floor(t/3600));$('st-min').textContent=NUM(Math.floor(t/60));
+  }
+  tick();setInterval(tick,1000);
+
+  /* ---------- calendar (.ics) ---------- */
+  $('calBtn').addEventListener('click',function(){
+    var ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//GTA6 Fan Countdown//EN','BEGIN:VEVENT','UID:gta6-release-day@fan-countdown',
+      'DTSTAMP:20261022T000000Z','DTSTART;VALUE=DATE:20261119','DTEND;VALUE=DATE:20261120','SUMMARY:GTA 6 Release Day',
+      'DESCRIPTION:Grand Theft Auto VI release date (as announced).','BEGIN:VALARM','TRIGGER:-P1D','ACTION:DISPLAY','DESCRIPTION:GTA 6 comes out tomorrow','END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
+    try{
+      var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='gta6-release.ics';
+      document.body.appendChild(a);a.click();a.remove();
+      $('calNote').textContent=T('اگر فایل تقویم دانلود نشد (مثلاً در نمای آنلاین)، از دکمه‌ی Google Calendar استفاده کن.','If the calendar file didn’t download (for example in the online preview), use the Google Calendar button.');
+    }catch(e){$('calNote').textContent=T('دانلود در این محیط ممکن نشد؛ سایت را از فایل زیپ باز کن.','Download wasn’t possible here; open the site from the zip file.')}
+  });
+
+  /* ---------- GTA 6 regions ---------- */
+  var regions=[
+    ['Vice City','ونیس‌سیتی','قلب بازی و شهر اصلی؛ ساحل، شب‌های نئونی و خیابان‌های شلوغ.','The heart of the game and its main city: beaches, neon nights and busy streets.'],
+    ['Leonida Keys','لئونیدا کیز','منطقه‌ی جزیره‌ای با پل، بندر کوچک و مسیرهای قاچاق.','An island region with bridges, small harbors and smuggling routes.'],
+    ['Grassrivers','گرس‌ریورز','منطقه‌ی باتلاقی و پر از آبراه در لئونیدا.','A marshy region of Leonida full of waterways.'],
+    ['Port Gellhorn','پورت گلهورن','یکی از شهرهای کوچک‌تر لئونیدا.','One of the smaller towns of Leonida.'],
+    ['Ambrosia','آمبروزیا','در بازی «قلب لئونیدا» نامیده شده؛ منطقه‌ی داخلی.','Called the “heart of Leonida” in the game; an inland region.'],
+    ['Mount Kalaga','کوه کالاگا','منطقه‌ی کوهستانی و طبیعی در لئونیدا.','A mountainous, natural region in Leonida.']
+  ];
+  var tabs=$('tabs'),curR=0;
+  function pick(i){
+    curR=i;
+    each(document.querySelectorAll('.rg'),function(e){e.classList.toggle('on',+e.getAttribute('data-i')===i)});
+    each(tabs.children,function(b,j){b.setAttribute('aria-selected',j===i)});
+    $('panel').innerHTML='<h3>'+regions[i][0]+'</h3><p>'+T(regions[i][2],regions[i][3])+'</p>';
+  }
+  function buildTabs(){
+    tabs.innerHTML='';
+    regions.forEach(function(r,i){
+      var b=document.createElement('button');b.className='tab';b.setAttribute('role','tab');b.textContent=L==='en'?r[0]:r[1];
+      b.onclick=function(){pick(i)};tabs.appendChild(b);
+    });
+  }
+  each(document.querySelectorAll('.rg'),function(e){e.addEventListener('click',function(){pick(+e.getAttribute('data-i'))})});
+
+  /* ---------- GTA 5 sketch map + missions ---------- */
+  var places={
+    paleto:['Paleto Bay','پالتو بی',85,60,'شهر ساحلی کوچک در شمال‌غرب؛ جای هایست «پالتو اسکور».','A small coastal town in the northwest; site of the Paleto Score heist.'],
+    chiliad:['Mount Chiliad','کوه چیلیاد',200,95,'بلندترین کوه نقشه در شمال.','The tallest mountain on the map, in the north.'],
+    grapeseed:['Grapeseed','گریپ‌سید',300,135,'شهر کشاورزی کوچک در بلین‌کانتی.','A small farming town in Blaine County.'],
+    sandy:['Sandy Shores','سندی‌شورز',265,215,'شهر بیابانی کنار دریاچه‌ی آلامو؛ پایگاه ترور.','A desert town by the Alamo Sea; Trevor’s base.'],
+    zancudo:['Fort Zancudo','فورت زانکودو',95,190,'پایگاه نظامی در غرب نقشه.','A military base in the west of the map.'],
+    vinewood:['Vinewood','واین‌وود',210,375,'محله‌ی سینما و کلوپ‌ها، با تابلوی معروف Vinewood.','The film and club district, with the famous Vinewood sign.'],
+    rockford:['Rockford Hills','راکفورد هیلز',165,395,'محله‌ی ثروتمندان؛ خانه‌ی مایکل و جواهرفروشی Vangelico.','The wealthy district; Michael’s home and the Vangelico jewelry store.'],
+    vespucci:['Vespucci / Del Perro','وسپوچی و دل‌پرو',100,415,'ساحل، اسکله و تفریحگاه غرب لس‌سانتوس.','Beach, pier and leisure area on the west side of Los Santos.'],
+    lsia:['LS Airport','فرودگاه لس‌سانتوس',110,475,'فرودگاه بین‌المللی در جنوب‌غرب.','The international airport in the southwest.'],
+    port:['Port of LS','بندر لس‌سانتوس',200,505,'بندر شهر؛ مرتبط با هایست مریویدر.','The city port; tied to the Merryweather heist.'],
+    davis:['Davis / Strawberry','دیویس و استرابری',215,450,'محله‌های جنوبی؛ فضای زندگی فرانکلین.','The southern neighborhoods; Franklin’s home turf.'],
+    mirror:['Mirror Park','میرور پارک',270,405,'منطقه‌ی مدرن در شرق لس‌سانتوس.','A modern area in the east of Los Santos.'],
+    downtown:['Downtown LS','مرکز لس‌سانتوس',195,425,'ساختمان‌های بلند، مرکز مالی و ساختمان FIB.','Tall buildings, the financial center and the FIB building.']
+  };
+  var col={Michael:'#27e6ff',Franklin:'#7dff6b',Trevor:'#ff8a3d',All:'#ffd35a'};
+  var missions=[
+    ['Prologue','Michael',null,'شروع بازی در نورث یانکتون، خارج از نقشه‌ی اصلی.','The opening, set in North Yankton, off the main map.'],
+    ['Franklin and Lamar','Franklin','davis','اولین ماموریت فرانکلین.','Franklin’s first mission.'],
+    ['Repossession','Franklin','davis','کار ریپوی فرانکلین.','Franklin’s repo job.'],
+    ['Marriage Counseling','Michael','rockford','دردسر خانوادگی مایکل.','Michael’s family trouble.'],
+    ['Casing the Jewel Store','Michael','rockford','نقشه‌کشی برای سرقت جواهرفروشی Vangelico.','Scouting the Vangelico jewelry store.'],
+    ['The Jewel Store Job','Michael','rockford','اولین هایست بزرگ بازی.','The game’s first big heist.'],
+    ['Mr. Philips','Trevor','sandy','معرفی ترور.','Trevor’s introduction.'],
+    ['Trevor Philips Industries','Trevor','sandy','ترور با رقبای محلی درگیر می‌شود.','Trevor clashes with local rivals.'],
+    ['Nervous Ron','Trevor','sandy','از ماموریت‌های ترور.','One of Trevor’s missions.'],
+    ['Reuniting the Family','Michael','sandy','بازدید مایکل از سندی‌شورز.','Michael’s visit to Sandy Shores.'],
+    ['The Paleto Score','All','paleto','سرقت بانک بلین‌کانتی در پالتو بی.','The Blaine County bank robbery in Paleto Bay.'],
+    ['The Merryweather Heist','All','port','هایست بندر و دریا.','The port and sea heist.'],
+    ['The Big Score','All','downtown','سرقت از ساختمان Union Depository.','The Union Depository robbery.'],
+    ['The Bureau Raid','All','downtown','نفوذ به ساختمان FIB.','Breaking into the FIB building.'],
+    ['Something Sensible','Franklin',null,'پایان A؛ ترور کشته می‌شود.','Ending A; Trevor dies.'],
+    ['The Time’s Come','Franklin',null,'پایان B؛ مایکل کشته می‌شود.','Ending B; Michael dies.'],
+    ['The Third Way','All',null,'پایان C؛ هر سه شخصیت زنده می‌مانند.','Ending C; all three characters survive.']
+  ];
+  var pts=$('pts5'),NS='http://www.w3.org/2000/svg',dots={},r5;
+  function setR5(f){r5=f;f()}
+  Object.keys(places).forEach(function(k){
+    var p=places[k],g=document.createElementNS(NS,'g');g.setAttribute('class','dot');g.setAttribute('tabindex','0');g.setAttribute('role','button');
+    g.setAttribute('aria-label',p[0]);
+    g.innerHTML='<circle cx="'+p[2]+'" cy="'+p[3]+'" r="6" fill="#ff2e93"/><text x="'+p[2]+'" y="'+(p[3]-10)+'">'+p[0]+'</text>';
+    g.addEventListener('click',function(){sel(k)});
+    g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();sel(k)}});
+    pts.appendChild(g);dots[k]=g;
+  });
+  function mark(k){Object.keys(dots).forEach(function(d){dots[d].classList.toggle('on',d===k)})}
+  function sel(k){
+    mark(k);
+    setR5(function(){var p=places[k];$('panel5').innerHTML='<h3>'+p[0]+'</h3><p>'+(L==='en'?p[5]:'<b>'+p[1]+'</b> — '+p[4])+'</p>'});
+  }
+  var who='all',ms=$('ms5'),chips=$('chips5');
+  function rend(){
+    ms.innerHTML='';
+    missions.forEach(function(m){
+      if(who!=='all'&&m[1]!==who&&m[1]!=='All')return;
+      var b=document.createElement('button');
+      b.innerHTML='<b>'+m[0]+'</b><i style="background:'+col[m[1]]+'">'+m[1]+'</i>';
+      b.onclick=function(){
+        mark(m[2]);
+        setR5(function(){$('panel5').innerHTML='<h3>'+m[0]+'</h3><p>'+T(m[3],m[4])+(m[2]?' · '+T(places[m[2]][1],places[m[2]][0]):T(' · روی نقشه نیست',' · not on the map'))+'</p>'});
+        $('panel5').scrollIntoView({behavior:'smooth',block:'center'});
+      };
+      ms.appendChild(b);
+    });
+  }
+  function buildChips(){
+    chips.innerHTML='';
+    ['all','Michael','Franklin','Trevor'].forEach(function(w){
+      var b=document.createElement('button');b.className='chip';b.textContent=w==='all'?T('همه','All'):w;b.setAttribute('aria-pressed',w===who);
+      b.onclick=function(){who=w;each(chips.children,function(c){c.setAttribute('aria-pressed',c===b)});rend()};
+      chips.appendChild(b);
+    });
+  }
+
+  /* ---------- cars ---------- */
+  var cats={super:['Super','سوپرکار','#ff2e93'],sports:['Sports','اسپرت','#27e6ff'],muscle:['Muscle','ماسل‌کار','#ff8a3d'],bike:['Bikes','موتور','#7dff6b'],air:['Air','هوایی','#ffd35a'],sea:['Sea','دریایی','#9ab8ff']};
+  var cars=[
+    ['Adder','super','🏎️','سوپرکار لوکس و بسیار سریع؛ الهام‌گرفته از بوگاتی ویرون.','A luxury, very fast supercar.','Bugatti Veyron'],
+    ['Zentorno','super','🏎️','سوپرکار تیز و کم‌ارتفاع، محبوب خیلی از بازیکن‌ها.','A sharp, low supercar popular with many players.','Lamborghini Sesto Elemento'],
+    ['Infernus','super','🏎️','سوپرکار کلاسیک‌تر بازی با صدای بلند.','A more classic supercar with a loud engine note.','Lamborghini Murciélago'],
+    ['T20','super','🏎️','هایپرکار آیرودینامیک و مدرن.','A modern, aerodynamic hypercar.','McLaren P1'],
+    ['Banshee','sports','🚘','اسپرت قدرتمند با موتور بزرگ.','A powerful sports car with a big engine.','Dodge Viper'],
+    ['Sultan','sports','🚘','سدان اسپرت که با تیونینگ خیلی خوب می‌شود.','A sports sedan that tunes up nicely.','Subaru Impreza WRX STI'],
+    ['Elegy RH8','sports','🚘','اسپرت ژاپنی‌مدل و مناسب مسابقه.','A Japanese-style sports car, great for racing.','Nissan GT-R'],
+    ['Buffalo','muscle','🚓','سدان قدرتی که در نسخه‌های مختلف دیده می‌شود.','A muscle sedan seen in several versions.','Dodge Charger'],
+    ['Dominator','muscle','🚓','ماسل‌کار کلاسیک آمریکایی.','A classic American muscle car.','Ford Mustang'],
+    ['Gauntlet','muscle','🚓','ماسل‌کار دو‌در با صدای خشن.','A two-door muscle car with a rough sound.','Dodge Challenger'],
+    ['Bati 801','bike','🏍️','موتور اسپرت سبک و چابک.','A light, agile sport bike.','Ducati 848'],
+    ['Sanchez','bike','🏍️','موتور آف‌رود مناسب مسیرهای خاکی.','An off-road bike for dirt tracks.','a dirt bike'],
+    ['Hakuchou','bike','🏍️','موتور سریع و سنگین‌تر.','A fast, heavier bike.','Suzuki Hayabusa'],
+    ['Buzzard','air','🚁','هلیکوپتر نظامی مسلح.','An armed military helicopter.','an attack helicopter'],
+    ['Maverick','air','🚁','هلیکوپتر غیرنظامی و همه‌کاره.','A civilian, all-purpose helicopter.','a civilian helicopter'],
+    ['Duster','air','✈️','هواپیمای کوچک سمپاشی.','A small crop-duster plane.','a crop duster'],
+    ['Dinghy','sea','🚤','قایق بادی کوچک و سبک.','A small, light inflatable boat.','a rigid inflatable'],
+    ['Jetmax','sea','🚤','قایق تندرو.','A speedboat.','a speedboat'],
+    ['Seashark','sea','🌊','جت‌اسکی ساده.','A simple jet ski.','a jet ski']
+  ];
+  var carCat='all',carsEl=$('cars'),chipsC=$('chipsC');
+  function rendCars(){
+    carsEl.innerHTML='';
+    cars.forEach(function(c){
+      if(carCat!=='all'&&c[1]!==carCat)return;
+      var ct=cats[c[1]],d=document.createElement('div');d.className='car glass lift';d.style.setProperty('--c',ct[2]);
+      d.innerHTML='<div class="ico">'+c[2]+'</div><h3>'+c[0]+'</h3><span class="tagc">'+(L==='en'?ct[0]:ct[1])+'</span><p>'+T(c[3],c[4])+'</p><div class="ins">'+T('الهام‌گرفته از: ','Inspired by: ')+c[5]+'</div>';
+      carsEl.appendChild(d);
+    });
+  }
+  function buildChipsC(){
+    chipsC.innerHTML='';
+    [['all','همه','All']].concat(Object.keys(cats).map(function(k){return [k,cats[k][1],cats[k][0]]})).forEach(function(a){
+      var b=document.createElement('button');b.className='chip';b.textContent=T(a[1],a[2]);b.setAttribute('aria-pressed',a[0]===carCat);
+      b.onclick=function(){carCat=a[0];each(chipsC.children,function(c){c.setAttribute('aria-pressed',c===b)});rendCars()};
+      chipsC.appendChild(b);
+    });
+  }
+
+  /* ---------- real GTA 5 map: 3D tilt, pins, coordinates ---------- */
+  var rp=[
+    ['Los Santos','لس‌سانتوس',67.7,52,'شهر اصلی بازی؛ بیشتر ماموریت‌ها در خیابان‌های آن اتفاق می‌افتند.','The main city of the game; most missions happen in its streets.'],
+    ['Port of LS','بندر لس‌سانتوس',77.5,49,'منطقه‌ی بندر و اسکله‌ها در شرق شهر.','The port and piers on the east side of the city.'],
+    ['LS Airport','فرودگاه لس‌سانتوس',79,68.5,'فرودگاه بین‌المللی؛ باند آن در گوشه‌ی پایین نقشه دیده می‌شود.','The international airport; its runway shows in the lower corner of the map.'],
+    ['Alamo Sea','دریاچه‌ی آلامو',36.5,43.5,'بزرگ‌ترین دریاچه‌ی نقشه در بلین‌کانتی.','The largest lake on the map, in Blaine County.']
+  ];
+  var m3=$('map3d'),stage=$('stage'),pinEls=[],rR;
+  function setRR(f){rR=f;f()}
+  rp.forEach(function(p){
+    var b=document.createElement('button');b.className='pin';b.style.left=p[2]+'%';b.style.top=p[3]+'%';
+    b.innerHTML='<i></i><span>'+p[0]+'</span>';b.setAttribute('aria-label',p[0]);
+    b.onclick=function(e){
+      e.stopPropagation();
+      pinEls.forEach(function(x){x.classList.toggle('on',x===b)});
+      setRR(function(){$('panelR').innerHTML='<h3>'+p[0]+'</h3><p>'+(L==='en'?p[5]:'<b>'+p[1]+'</b> — '+p[4])+'</p>'});
+    };
+    m3.appendChild(b);pinEls.push(b);
+  });
+  $('mapImg').addEventListener('click',function(e){
+    var im=e.target,x=(e.offsetX/im.offsetWidth*100).toFixed(1),y=(e.offsetY/im.offsetHeight*100).toFixed(1);
+    pinEls.forEach(function(p){p.classList.remove('on')});
+    setRR(function(){$('panelR').innerHTML='<h3>X '+x+'% · Y '+y+'%</h3><p>'+T('مختصات این نقطه روی نقشه. اسم مکان را با این عددها برایم بفرست تا نقطه‌اش را اضافه کنم.','Coordinates of this spot on the map. Send me the place name with these numbers and I can add a pin.')+'</p>'});
+  });
+  var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!rm){
+    stage.addEventListener('pointermove',function(e){
+      var r=stage.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+      m3.style.setProperty('--ry',(px*22)+'deg');m3.style.setProperty('--rx',(30-py*16)+'deg');
+    });
+    stage.addEventListener('pointerleave',function(){m3.style.setProperty('--ry','0deg');m3.style.setProperty('--rx','30deg')});
+  }
+
+  /* ---------- trailers (click to load) ---------- */
+  each(document.querySelectorAll('.vid'),function(v){
+    v.querySelector('button').addEventListener('click',function(){
+      var f=document.createElement('iframe');
+      f.src='https://www.youtube-nocookie.com/embed/'+v.getAttribute('data-v')+'?autoplay=1&rel=0';
+      f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.title='GTA 6 trailer';
+      v.innerHTML='';v.appendChild(f);
+    });
+  });
+
+  /* ---------- radio: built-in synth loop or user's own file ---------- */
+  var ac,master,timer=null,step=0,own=null,playing=false;
+  var chords=[[110,[220,261.6,329.6]],[87.31,[174.6,220,261.6]],[130.81,[261.6,329.6,392]],[98,[196,246.9,293.7]]];
+  function note(type,f,t,len,vol,cut){
+    var o=ac.createOscillator(),g=ac.createGain(),fl=ac.createBiquadFilter();
+    o.type=type;o.frequency.value=f;fl.type='lowpass';fl.frequency.value=cut;
+    g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.02);g.gain.exponentialRampToValueAtTime(.001,t+len);
+    o.connect(fl);fl.connect(g);g.connect(master);o.start(t);o.stop(t+len+.05);
+  }
+  function kick(t){
+    var o=ac.createOscillator(),g=ac.createGain();
+    o.frequency.setValueAtTime(140,t);o.frequency.exponentialRampToValueAtTime(40,t+.15);
+    g.gain.setValueAtTime(.9,t);g.gain.exponentialRampToValueAtTime(.001,t+.2);
+    o.connect(g);g.connect(master);o.start(t);o.stop(t+.25);
+  }
+  function beat(){
+    var t=ac.currentTime+.03,c=chords[Math.floor(step/8)%4],p=step%8;
+    if(p%2===0)note('sawtooth',c[0],t,.5,.5,500);
+    note('square',c[1][p%3]*(p>=4?2:1),t,.28,.16,2600);
+    if(p%4===0)kick(t);
+    if(p===0)c[1].forEach(function(f){note('triangle',f,t,2.2,.12,1400)});
+    step++;
+  }
+  function eq(on){$('eq').classList.toggle('on',on)}
+  function labels(){
+    $('radioBtn2').textContent=playing?T('⏸ توقف رادیو','⏸ Stop radio'):T('▶ پخش رادیو','▶ Play radio');
+    $('radioBtn').setAttribute('aria-pressed',playing);
+  }
+  function play(){
+    if(own){own.play();playing=true;eq(true);labels();return}
+    try{
+      if(!ac){ac=new (window.AudioContext||window.webkitAudioContext)();master=ac.createGain();master.gain.value=.22;master.connect(ac.destination)}
+      ac.resume();if(!timer)timer=setInterval(beat,300);playing=true;eq(true);labels();
+    }catch(e){$('radioNote').textContent=T('صدا در این مرورگر کار نکرد.','Audio isn’t available in this browser.')}
+  }
+  function stop(){
+    if(own)own.pause();
+    if(timer){clearInterval(timer);timer=null}
+    playing=false;eq(false);labels();
+  }
+  function toggle(){playing?stop():play()}
+  $('radioBtn').addEventListener('click',toggle);$('radioBtn2').addEventListener('click',toggle);
+  $('file').addEventListener('change',function(e){
+    var f=e.target.files[0];if(!f)return;
+    stop();if(own){own.pause();URL.revokeObjectURL(own.src)}
+    own=new Audio(URL.createObjectURL(f));own.loop=true;play();
+    $('radioNote').textContent=T('در حال پخش: ','Playing: ')+f.name;
+  });
+
+  /* ---------- language ---------- */
+  function setLang(l){
+    L=l;
+    var h=document.documentElement;h.lang=l==='en'?'en':'fa';h.dir=l==='en'?'ltr':'rtl';
+    each(document.querySelectorAll('[data-en]'),function(e){
+      if(!e.hasAttribute('data-fa'))e.setAttribute('data-fa',e.innerHTML);
+      e.innerHTML=l==='en'?e.getAttribute('data-en'):e.getAttribute('data-fa');
+    });
+    document.title=l==='en'?'GTA 6 Countdown':'شمارش معکوس GTA 6';
+    $('langBtn').textContent=l==='en'?'فا':'EN';
+    buildTabs();pick(curR);buildChips();rend();buildChipsC();rendCars();labels();
+    r5();rR();tick();
+    if(l==='fa'){$('calNote').textContent=''}
+    try{localStorage.setItem('lang',l)}catch(e){}
+  }
+  $('langBtn').addEventListener('click',function(){setLang(L==='fa'?'en':'fa')});
+
+  r5=function(){$('panel5').textContent=T('یک نقطه را انتخاب کن.','Select a point.')};
+  rR=function(){$('panelR').textContent=T('یک نقطه را روی نقشه انتخاب کن.','Select a point on the map.')};
+  var saved='fa';try{saved=localStorage.getItem('lang')||'fa'}catch(e){}
+  setLang(saved==='en'?'en':'fa');
+  show((location.hash||'').replace('#','')||'home');
+
+  /* ---------- Vice City sunset background ---------- */
+  var c=$('bg'),x=c.getContext('2d'),W,H,dpr,stars=[],bld=[],mx=0,scroll=0,T0=0;
+  function rnd(a,b){return a+Math.random()*(b-a)}
+  function layout(){
+    dpr=Math.min(window.devicePixelRatio||1,2);W=innerWidth;H=innerHeight;
+    c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);
+    stars=[];for(var i=0;i<110;i++)stars.push({x:rnd(0,W),y:rnd(0,H*.5),r:rnd(.4,1.5),p:rnd(0,6)});
+    bld=[];var px=-20;while(px<W+40){var w=rnd(26,70),h=rnd(H*.08,H*.3);bld.push({x:px,w:w,h:h,l:Math.random()});px+=w+rnd(0,6)}
+  }
+  function draw(){
+    T0+=.016;var hz=H*.62,sy=scroll*.15;
+    var g=x.createLinearGradient(0,0,0,hz);
+    g.addColorStop(0,'#0c0218');g.addColorStop(.45,'#3b0d57');g.addColorStop(.8,'#c2287a');g.addColorStop(1,'#ff8a3d');
+    x.fillStyle=g;x.fillRect(0,0,W,H);
+    x.fillStyle='#fff';
+    stars.forEach(function(s){x.globalAlpha=.4+.6*Math.abs(Math.sin(T0+s.p));x.fillRect(s.x+mx*8,s.y-sy*.3,s.r,s.r)});
+    x.globalAlpha=1;
+    var R=Math.min(W,H)*.26,cx=W/2+mx*14,cy=hz-R*.55-sy;
+    x.save();x.beginPath();x.arc(cx,cy,R,0,7);x.clip();
+    var sg=x.createLinearGradient(0,cy-R,0,cy+R);sg.addColorStop(0,'#ffd35a');sg.addColorStop(.5,'#ff8a3d');sg.addColorStop(1,'#ff2e93');
+    x.fillStyle=sg;x.fillRect(cx-R,cy-R,R*2,R*2);
+    x.fillStyle='#0c0218';
+    for(var k=0;k<7;k++){var yy=cy+R*(.05+k*.14),hh=2+k*2.2;x.globalAlpha=.9;x.fillRect(cx-R,yy,R*2,hh)}
+    x.restore();x.globalAlpha=1;
+    bld.forEach(function(b){
+      var bx=b.x+mx*-10,by=hz-b.h-sy*.5;
+      x.fillStyle='#0a0212';x.fillRect(bx,by,b.w,b.h+H);
+      x.fillStyle='rgba(39,230,255,.75)';
+      for(var yy=by+8;yy<hz-sy*.5-6;yy+=14)for(var xx=bx+5;xx<bx+b.w-6;xx+=10){
+        if(Math.sin(xx*12.9+yy*78.2+b.l*50)>.55)x.fillRect(xx,yy,3,5)}
+    });
+    x.fillStyle='#12041f';x.fillRect(0,hz,W,H-hz);
+    var fg=x.createLinearGradient(0,hz,0,H);fg.addColorStop(0,'rgba(255,46,147,.45)');fg.addColorStop(1,'rgba(18,4,31,0)');
+    x.fillStyle=fg;x.fillRect(0,hz,W,H-hz);
+    x.strokeStyle='rgba(39,230,255,.55)';x.lineWidth=1;x.beginPath();
+    for(var i=-20;i<=20;i++){x.moveTo(W/2+i*8+mx*20,hz);x.lineTo(W/2+i*W*.14,H)}
+    var off=(T0*.5)%1;
+    for(var j=0;j<14;j++){var f=(j+off)/14,y=hz+(H-hz)*f*f;x.moveTo(0,y);x.lineTo(W,y)}
+    x.stroke();
+    function palm(px,ph,dir){
+      x.strokeStyle='#05010a';x.lineWidth=7;x.beginPath();x.moveTo(px,H);x.quadraticCurveTo(px+dir*20,H-ph*.5,px+dir*8,H-ph);x.stroke();
+      x.lineWidth=4;
+      for(var a=0;a<7;a++){var an=-Math.PI*(a/6)+Math.sin(T0*1.2+a)*.04;
+        x.beginPath();x.moveTo(px+dir*8,H-ph);
+        x.quadraticCurveTo(px+dir*8+Math.cos(an)*50,H-ph+Math.sin(an)*50-22,px+dir*8+Math.cos(an)*92,H-ph+Math.sin(an)*60+36);x.stroke()}
+    }
+    palm(W*.06,H*.42,1);palm(W*.94,H*.36,-1);if(W>700){palm(W*.15,H*.26,1);palm(W*.86,H*.22,-1)}
+    if(!rm)requestAnimationFrame(draw);
+  }
+  addEventListener('resize',function(){layout();if(rm)draw()});
+  addEventListener('scroll',function(){scroll=Math.min(scrollY,H);if(rm)draw()},{passive:true});
+  addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5},{passive:true});
+  layout();draw();
+})();
+</script>
+</body>
+</html>
